@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+<form>
+  {% for candidate in candidates %}
+  <fieldset>
+    <legend>{{ candidate.name }}</legend>
+    <div>
+      <input type="radio" id="vote_for" name="vote" value="for" />
+      <label for="{{ candidate }}_for">for</label>
+
+      <input type="radio" id="vote_against" name="vote" value="against" />
+      <label for="{{ candidate }}_against">against</label>
+
+      <input type="radio" id="vote_abstain" name="vote" value="abstention" />
+      <label for="{{ candidate }}_abstention">abstain</label>
+    </div>
+    {% endfor %}
+    <div>
+      <button type="submit">Vote</button>
+    </div>
+  </fieldset>
+</form>
+</div>
+{% endblock %}

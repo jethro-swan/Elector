@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <p class="error">Unauthenticated</p>
+
+  <p><b><a href="{{ url_for('login') }}">Please log in</a></b></p>
+
+{% endblock %}
