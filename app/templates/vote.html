@@ -1,25 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
 <div>
-<form>
+<form action="{{ url_for('read_vote_form')}}" method="post">
   {% for candidate in candidates %}
   <fieldset>
     <legend>{{ candidate.name }}</legend>
     <div>
-      <input type="radio" id="vote_for" name="vote" value="for" />
-      <label for="{{ candidate }}_for">for</label>
-
-      <input type="radio" id="vote_against" name="vote" value="against" />
-      <label for="{{ candidate }}_against">against</label>
-
-      <input type="radio" id="vote_abstain" name="vote" value="abstention" />
-      <label for="{{ candidate }}_abstention">abstain</label>
-    </div>
-    {% endfor %}
-    <div>
-      <button type="submit">Vote</button>
+      <input type="radio" id="{{ candidate.id }}_vote_for"
+      name="{{ candidate.id }}_vote" value="for" checked />
+      <label for="{{ candidate.id }}_for">for</label>
+      <input type="radio" id="{{ candidate.id }}_vote_against"
+      name="{{ candidate.id }}_vote" value="against" />
+      <label for="{{ candidate.id }}_against">against</label>
+      <input type="radio" id="{{ candidate.id }}_vote_abstain"
+      name="{{ candidate.id }}_vote" value="abstain" />
+      <label for="{{ candidate.id }}_abstain">abstain</label>
     </div>
   </fieldset>
+  {% endfor %}
+  <div>
+    <label for="email" class="form-label">Email address</label>
+    <input name="userEmail" type="email" class="form-control" id="email">
+  </div>
+  <div>
+    <label for="password" class="form-label">Password</label>
+    <input name="userPassword" type="password" class="form-control"
+    id="password">
+  </div>
+  <div>
+    <button type="submit" class="btn btn-primary">Vote</button>
+  </div>
 </form>
 </div>
 {% endblock %}

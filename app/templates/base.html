@@ -22,23 +22,6 @@ crossorigin="anonymous"></script>
 
 <div class="clear-both"><!-- menu row 1 -->
 
-{% if not logged_in %}
-
-  {% if page == "login" %}
-    <div class="mba">log in</div>
-  {% else %}
-    <div class="mb">
-      <a class="mb" href="/login">log in</a>
-    </div>
-  {% endif %}
-
-{% else %}<!-- logged_in -->
-
-
-
-{% endif %}
-
-
 {% block content %}{% endblock %}
 
 </body>
