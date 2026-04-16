@@ -32,8 +32,7 @@ def fcopy(src_path, dest_path):
     if newpath == dest_path:
         return(newpath)
     else:
-        return("")
-    # Returns empty string if unsuccessful
+        return("") # Returns empty string if unsuccessful
 
 #------------------------------------------------------------------------------
 def create_voters_db():
@@ -79,7 +78,6 @@ def create_voters_db():
             candidates = cl.readlines()
             for candidate_name in candidates:
                 candidate_name = candidate_name.strip()
-#                print(candidate_name)
                 cursor.execute(
                     "INSERT INTO candidates (candidate_name) VALUES (?)",
                     (candidate_name,)
@@ -110,7 +108,6 @@ def create_voters_db():
 
 
 def record_vote(voter_email, vote_set):
-
     with sqlite3.connect(VOTERS_DB) as conn:
         cursor = conn.cursor()
         cursor.execute(
