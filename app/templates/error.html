@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+  {% if title == "invalid voter" %}
+  <p>The email address entered does not belong to a registered member.</p>
+  <p>Return to <a href="{{ url_for('vote') }}">voting form</a>.</p>
+  {% elif title == "invalid password" %}
+  <p>The password entered is invalid. <a href="{{ url_for('vote') }}">Try
+  again</a>.</p>
+  {% elif title == "vote count exceeded" %}
+  <p>You have reached your voting limit.</p>
+  {% endif %}
+</div>
+{% endblock %}

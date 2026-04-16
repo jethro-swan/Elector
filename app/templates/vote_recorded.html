@@ -1,8 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
 <div>
+
   <p>Your vote has been recorded. The results will be announced at the AGM.</p>
-  
+
+  <p>If you wish to revise your vote, you can do so by
+  <a href="{{ url_for('vote') }}">revisting this form</a> up to {{ max_votes }}
+  times.</p>
+
 
 </div>
 {% endblock %}

@@ -9,28 +9,51 @@ from app.core.constants import MEMBERS_LIST
 from app.core.constants import CANDIDATES_LIST
 from app.core.constants import VOTES_LOG
 
+from app.core.guts import record_vote
 
-@app.route('/read_vote_form', methods=['POST'])
+max_votes_per_voter = 3
+
+@app.route("/read_vote_form", methods=["POST"])
 def read_vote_form():
 
-    # Get the form data as Python ImmutableDict datatype
-    data = request.form
+    # Convert form data ImmutableDict to a mutable equivalent:
+    form_data = request.form.to_dict()
 
-    email = data['userEmail']
+    email = form_data.pop("userEmail")
+    password = form_data.pop("userPassword")
+
+#    print(email)
+#    print(password)
+
     # INSERT code to check that email is that of a member
 
-    password = data['userPassword']
     if password != "nopasaran":
         flash("Invaid password")
         return redirect(url_for("invalid_password"))
 
     # INSERT code to store results in database and log
+    vote_set = []
+    for k in form_data.keys():
+#        print(k + " :: " + form_data[k])
+        v = k.split("_")
+        n = v[0]
+#        print(n)
+        vote_set.append(form_data[k])
+#    print(vote_set)
+#    for i in range(len(vote_set)):
+#        print(vote_set[i])
 
-    for k in data.keys():
-        print(k + " :: " + data[k])
+    m = record_vote(email, vote_set)
+    print("m = " + m)
+    flash(m)
+    if not m:
+        flash("Your vote has been recorded")
+        return redirect(url_for("vote_recorded"))
+    elif m == "Voter has exceeded maximum number of votes":
+        return redirect(url_for("vote_count_exceeded"))
+    else:
+        return redirect(url_for("invalid_voter"))
 
-    flash("Your vote has been recorded")
-    return redirect(url_for("vote_recorded"))
 
 
 @app.route("/vote_recorded")
@@ -43,17 +66,23 @@ def vote_recorded():
 @app.route("/invalid_voter")
 def invalid_voter():
     return render_template(
-        "invalid_voter.html",
+        "error.html",
         title="invalid voter"
     )
 
 @app.route("/invalid_password")
 def invalid_password():
     return render_template(
-        "invalid_password.html",
+        "error.html",
         title="invalid password"
     )
 
+@app.route("/vote_count_exceeded")
+def vote_count_exceeded():
+    return render_template(
+        "error.html",
+        title="vote count exceeded"
+    )
 
 # vote ------------------------------------------------------------------------
 @app.route("/", methods = ["GET"])
@@ -73,12 +102,16 @@ def vote():
     for c_num in range(n_candidates):
         arg_req.append(str(c_num) + "_vote")
 
-    print(candidates)
+    #print(candidates)
     for c_num in range(n_candidates):
         arg_req.append(str(c_num) + "_vote")
+
+
+
 
     return render_template(
         "vote.html",
         title="AGM 2026",
+        max_votes=max_votes_per_voter,
         candidates=candidates
     )
