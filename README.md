@@ -75,14 +75,14 @@ and create an SSL certificate
 
 Create a list of election candidates **candidates.txt** such as:
 
-    Minnie Bannister
-    Dennis Bloodnok
-    Timmy Bluebottle
-    Henry Crun
-    Dan Eccles
-    Hercules Grytpype-Thynne
-    Jim Moriarty
-    Ned Seagoon
+  > Minnie Bannister\
+  > Dennis Bloodnok\
+  > Timmy Bluebottle\
+  > Henry Crun\
+  > Dan Eccles\
+  > Hercules Grytpype-Thynne\
+  > Jim Moriarty\
+  > Ned Seagoon
 
 NB, the order in which they are listed here is the order in which they will
 appear in the voting screen.
@@ -93,10 +93,10 @@ Upload this:
 
 Create a list of eligible voters' email addresses in **members.txt**, e.g.
 
-    d.bloodnok@hm3rdexploders.gov.uk
-    bluebottle@finchleyscouts1956.goons.org
-    henry.crun@whacklowfuttleandcrun.co.uk
-    moriarty@reichenbach.de
+  > d.bloodnok@hm3rdexploders.gov.uk\
+  > bluebottle@finchleyscouts1956.goons.org\
+  > henry.crun@whacklowfuttleandcrun.co.uk\
+  > moriarty@reichenbach.de
 
 Upload this:
 
@@ -108,9 +108,10 @@ Run the Initialization script to create the database:
 
 ### Starting/stopping
 
-    /home/elector/Elector/venv/bin/gunicorn -w 4 --bind 0.0.0.0:8000 slate:app &
+    /home/elector/Elector/venv/bin/gunicorn -w 4 --bind 0.0.0.0:8000 elector:app &
 
-You should probably create a simple alias such as _run_elector_ for that. this will) be far more convenient when starting it over SSH, e.g.
+You should probably create a simple alias such as _run_elector_ for that. this
+will) be far more convenient when starting it over SSH, e.g.
 
     me@myworkstation:~$ ssh elector@whereverthehostis run_elector
 
