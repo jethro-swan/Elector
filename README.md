@@ -151,4 +151,4 @@ The values in
     app/core/constants.py
     app/static/css/default.css
 
-can easily be modified.
+can easily be modified. In particular, the **shared password must be changed**.
