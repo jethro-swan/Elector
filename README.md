@@ -38,7 +38,6 @@ Create a virtual environment and install the required Python libraries:
 
     python3 -m venv venv
     source venv/bin/activate
-    pip install sqlite3
     pip install flask
     pip install gunicorn
     deactivate
@@ -117,4 +116,39 @@ You should probably create a simple alias such as _run_elector_ for that. this w
 
 To stop it, simply bring to the foreground with _fg_ and press _ctrl-C_.
 
-### Stopping
+### voting
+
+This tool was designed to meet the simple needs of AGM, although it can easily
+be used for other purposes. The expectation is that the link to the form will
+sent to all registered members (those whose email addresses are listed in they
+**members.txt** file). Using the examples above, the screen looks like this (so
+can obviously be embedded conveniently in an iFrame or view on a phone screen).
+
+![Screenshot of the voting form](img/voting_form_497x536.png)
+
+By default, "for" is selected. If the  email address is not recognized, no
+vote will be recorded. In this simple initial version, all members are assigned
+the same password. (Although it would be very simple to extend this to give
+each a unique password, that would complicate usage and is not obviously worth
+the trouble at this stage.)
+
+If the email address is recognized and the password is correct, the vote will
+be recorded. The voter may return to the form a few times (the default number
+is four) to revise the vote.
+
+### Fetching the fetch_results
+
+To fetch the results of the vote, run
+
+    me@myworkstation:~$ ssh elector@whereverthehostis > results.csv
+
+to produce a simple CSV file.
+
+### Tweaking
+
+The values in
+
+    app/core/constants.py
+    app/static/css/default.css
+
+can easily be modified.

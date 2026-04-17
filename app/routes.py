@@ -8,10 +8,10 @@ from app.core.constants import VOTERS_DB
 from app.core.constants import MEMBERS_LIST
 from app.core.constants import CANDIDATES_LIST
 from app.core.constants import VOTES_LOG
+from app.core.constants import PASSWORD
+from app.core.constants import MAX_VOTES
 
 from app.core.guts import record_vote
-
-max_votes_per_voter = 3
 
 @app.route("/read_vote_form", methods=["POST"])
 def read_vote_form():
@@ -19,7 +19,7 @@ def read_vote_form():
     form_data = request.form.to_dict()
     email = form_data.pop("userEmail")
     password = form_data.pop("userPassword")
-    if password != "nopasaran":
+    if password != PASSWORD:
         flash("Invaid password")
         return redirect(url_for("invalid_password"))
     vote_set = []
@@ -87,6 +87,6 @@ def vote():
     return render_template(
         "vote.html",
         title="AGM 2026",
-        max_votes=max_votes_per_voter,
+        max_votes=MAX_VOTES,
         candidates=candidates
     )

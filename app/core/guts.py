@@ -7,6 +7,7 @@ import pickle
 
 from app.core.constants import VOTES_LOG
 from app.core.constants import VOTERS_DB, MEMBERS_LIST, CANDIDATES_LIST
+from app.core.constants import MAX_VOTES
 
 #==============================================================================
 
@@ -40,6 +41,7 @@ def create_voters_db():
     if os.path.exists(VOTERS_DB):
         fcopy(VOTERS_DB, VOTERS_DB + "_" + compact_timestamp())
         os.remove(VOTERS_DB)
+        os.touch(VOTERS_DB)
 
     with sqlite3.connect(VOTERS_DB) as conn:
         cursor = conn.cursor()
@@ -125,7 +127,7 @@ def record_vote(voter_email, vote_set):
         #
         # The vote_set is a list containing only "for"|"against"|"abstain" and
         # it is assumed here that it has been constructed correctly.
-        if vote_count > 3:
+        if vote_count > MAX_VOTES:
             cursor.close()
             return "Voter has exceeded maximum number of votes"
         if not voted_already:
