@@ -1,7 +1,3 @@
-obsolete
-slate_*
-test.py
-config
 venv
 venv/*
 __pycache__
