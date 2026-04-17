@@ -7,7 +7,7 @@ from app import app
 from app.core.constants import VOTERS_DB
 from app.core.constants import MEMBERS_LIST
 from app.core.constants import CANDIDATES_LIST
-from app.core.constants import VOTES_LOG
+#from app.core.constants import VOTES_LOG
 from app.core.constants import PASSWORD
 from app.core.constants import MAX_VOTES
 

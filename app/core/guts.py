@@ -5,7 +5,7 @@ import shutil
 from pathlib import Path
 import pickle
 
-from app.core.constants import VOTES_LOG
+#from app.core.constants import VOTES_LOG
 from app.core.constants import VOTERS_DB, MEMBERS_LIST, CANDIDATES_LIST
 from app.core.constants import MAX_VOTES
 
