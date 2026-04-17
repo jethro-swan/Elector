@@ -1,7 +1,7 @@
 # Elector
 
 An extremely simple tool to capture electoral votes for AGMs (in particular).
-
+This was written in a hurry to address a simple but (apparently) unmet need.
 
 ### Installation
 
