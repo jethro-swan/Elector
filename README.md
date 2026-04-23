@@ -110,8 +110,8 @@ Run the Initialization script to create the database:
 
     /home/elector/Elector/venv/bin/gunicorn -w 4 --bind 0.0.0.0:8000 elector:app &
 
-You should probably create a simple alias such as _run_elector_ for that. this
-will) be far more convenient when starting it over SSH, e.g.
+You should probably create a simple alias such as _run_elector_ for that. This
+will be far more convenient when starting it over SSH, e.g.
 
     me@myworkstation:~$ ssh elector@whereverthehostis run_elector
 
