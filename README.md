@@ -104,7 +104,7 @@ Upload this:
 
 Run the Initialization script to create the database:
 
-    me@myworkstation:~$ elector_
+    me@myworkstation:~$ elector_initialize.py
 
 ### Starting/stopping
 
